@@ -1,0 +1,11 @@
+node_modules
+src/node_modules
+src/**/node_modules
+.env
+npm-debug.log
+Dockerfile
+docker-compose.yml
+.git
+.gitignore
+.vscode
+*.log
