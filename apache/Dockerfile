@@ -19,6 +19,13 @@ RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-avail
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Install system dependencies for Composer
+RUN apt-get update && apt-get install -y \
+    git \
+    zip \
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
+
 # Optional: permissions (unneeded if you're using bind mounts)
 RUN chown -R www-data:www-data /var/www/laravel
 
