@@ -8,25 +8,40 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index() {
-        return Post::all();
+        $posts = Post::latest()->get();
+        return view('posts.index', compact('posts'));
+    }
+
+    public function create() {
+        return view('posts.create');
     }
 
     public function store(Request $request) {
-        return Post::create($request->only(['title', 'content']));
+        Post::create($request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]));
+        return redirect()->route('posts.index');    
+    }
+
+    public function edit(Post $post) {
+        return view('posts.edit', compact('post'));
     }
 
     public function show($id) {
         return Post::findOrFail($id);
     }
 
-    public function update(Request $request, $id) {
-        $post = Post::findOrFail($id);
-        $post->update($request->only(['title', 'content']));
-        return $post;
+    public function update(Request $request, Post $post) {
+        $post->update($request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]));
+        return redirect()->route('posts.index');
     }
 
-    public function destroy($id) {
-        Post::destroy($id);
-        return response()->noContent();
+    public function destroy(Post $post) {
+        $post->delete();
+        return back();
     }
 }
