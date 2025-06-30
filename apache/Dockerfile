@@ -16,6 +16,9 @@ ENV APACHE_DOCUMENT_ROOT=/var/www/laravel/public
 # Update Apache config to use the new document root
 RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/000-default.conf
 
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 # Optional: permissions (unneeded if you're using bind mounts)
 RUN chown -R www-data:www-data /var/www/laravel
 
