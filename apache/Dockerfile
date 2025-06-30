@@ -19,6 +19,11 @@ RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-avail
 # Optional: permissions (unneeded if you're using bind mounts)
 RUN chown -R www-data:www-data /var/www/laravel
 
+# Install Node.js & npm
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get update \
+    && apt-get install -y nodejs
+
 # Expose port 80 (default for Apache)
 EXPOSE 80
 
