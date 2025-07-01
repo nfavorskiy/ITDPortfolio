@@ -9,7 +9,7 @@
     @include('layouts.navigation')
 
     <main class="container py-4">
-        {{ $slot }}
+        @yield('content')
     </main>
 </body>
 </html>
