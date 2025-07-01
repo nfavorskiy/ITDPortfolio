@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    @vite(['resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
     @include('layouts.navigation')
@@ -19,6 +19,7 @@
     <main class="container py-4">
         @yield('content')
     </main>
+    
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const notification = document.getElementById('login-notification');

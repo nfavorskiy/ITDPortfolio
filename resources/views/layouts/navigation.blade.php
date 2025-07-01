@@ -21,7 +21,7 @@
             <ul class="navbar-nav ms-auto">
                 @auth
                     <li class="nav-item">
-                        <a href="{{ route('dashboard') }}" class="nav-link">
+                        <a class="nav-link" href="{{ route('profile.edit') }}">
                             <i class="bi bi-person-circle me-1"></i>
                             {{ Auth::user()->name }}
                             @if(Auth::user()->isAdmin())
