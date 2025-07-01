@@ -26,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
             if (str_starts_with(config('app.url'), 'https://')) {
                 URL::forceScheme('https');
             }
+
+            if (Request::getHost() === 'yourdomain.com') {
+                header("Location: https://www.yourdomain.com" . Request::getRequestUri(), true, 301);
+                exit;
+            }
         }
     }
 }
