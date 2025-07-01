@@ -9,7 +9,7 @@
         <h1 class="display-4">Welcome to ITD Portfolio</h1>
         <p class="lead">This is a simple Laravel + Bootstrap CRUD app.</p>
         @guest
-            <a href="{{ route('posts.index') }}" class="btn btn-primary">Sign in to view Posts</a>
+            <a href="{{ route('login', ['redirect_to_posts' => 'true']) }}" class="btn btn-primary">Sign in to view Posts</a>
         @else
             <a href="{{ route('posts.index') }}" class="btn btn-primary">View Posts</a>
         @endguest

@@ -21,7 +21,9 @@
             <ul class="navbar-nav ms-auto">
                 @auth
                     <li class="nav-item">
-                        <span class="nav-link">{{ Auth::user()->name }}</span>
+                        <a href="{{ route('dashboard') }}" class="nav-link">
+                            {{ Auth::user()->name }}
+                        </a>
                     </li>
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,16 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        
+        // Set login success message
+        $request->session()->flash('login_success', true);
 
+        // Check if they specifically clicked "Sign in to view Posts"
+        if ($request->has('redirect_to_posts')) {
+            return redirect()->route('posts.index');
+        }
+
+        // Otherwise, redirect to intended page (where they came from) or dashboard
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

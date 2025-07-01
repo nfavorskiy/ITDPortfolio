@@ -9,6 +9,10 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
+            @if(request('redirect_to_posts'))
+                <input type="hidden" name="redirect_to_posts" value="true">
+            @endif
+
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autofocus>
