@@ -6,8 +6,8 @@
     </x-slot>
 
     <div class="container text-center mt-5">
-        <h1 class="display-4">Welcome to ITD Portfolio</h1>
-        <p class="lead">This is a simple Laravel + Bootstrap CRUD app.</p>
+        <h1 class="display-4">Welcome to ITD Portfolio!</h1>
+        <p class="lead">This is a simple Laravel + Bootstrap CRUD app for Posts.</p>
         @guest
             <a href="{{ route('login', ['redirect_to_posts' => 'true']) }}" class="btn btn-primary">Sign in to view Posts</a>
         @else
