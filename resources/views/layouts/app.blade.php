@@ -10,7 +10,7 @@
     @include('layouts.navigation')
 
     @if(session('login_success'))
-        <div id="login-notification" class="alert alert-success alert-dismissible fade show position-fixed" style="top: 80px; right: 20px; z-index: 1050; min-width: 300px;">
+        <div id="login-notification" class="alert alert-success alert-dismissible fade show position-fixed" style="top: 62px; right: 20px; z-index: 1050; min-width: 300px;">
             <strong>Welcome!</strong> You are now logged in.
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
