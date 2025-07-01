@@ -6,6 +6,10 @@
     <div class="container text-center mt-5">
         <h1 class="display-4">Welcome to ITD Portfolio</h1>
         <p class="lead">This is a simple Laravel + Bootstrap CRUD app.</p>
-        <a href="{{ route('posts.index') }}" class="btn btn-primary">Sign in to view Posts</a>
+        @guest
+            <a href="{{ route('posts.index') }}" class="btn btn-primary">Sign in to view Posts</a>
+        @else
+            <a href="{{ route('posts.index') }}" class="btn btn-primary">View Posts</a>
+        @endguest
     </div>
 </x-app-layout>
