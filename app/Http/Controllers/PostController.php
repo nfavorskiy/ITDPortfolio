@@ -21,12 +21,17 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
         ]);
 
-        Post::create($request->all());
+        Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'user_id' => auth()->id(), // Automatically assign current user's ID
+        ]);
 
-        return redirect()->route('posts.index')->with('success', 'Post created.');
+        return redirect()->route('posts.index')->with('success', 'Post created successfully!');
     }
 
     public function edit(Post $post)

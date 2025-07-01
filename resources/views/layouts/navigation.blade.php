@@ -22,6 +22,7 @@
                 @auth
                     <li class="nav-item">
                         <a href="{{ route('dashboard') }}" class="nav-link">
+                            <i class="bi bi-person-circle me-1"></i>
                             {{ Auth::user()->name }}
                         </a>
                     </li>
