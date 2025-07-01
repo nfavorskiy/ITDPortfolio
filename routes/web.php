@@ -25,6 +25,20 @@ Route::post('/check-name-availability', function (Request $request) {
     ]);
 })->name('check.name.availability');
 
+Route::post('/check-email-availability', function (Request $request) {
+    $email = (string) $request->input('email');
+    
+    if (empty(trim($email))) {
+        return response()->json(['available' => true]);
+    }
+    
+    $exists = User::where('email', $email)->exists();
+    
+    return response()->json([
+        'available' => !$exists
+    ]);
+})->name('check.email.availability');
+
 // Only authenticated users can access these routes
 Route::middleware(['auth'])->group(function () {
     Route::resource('posts', PostController::class);
