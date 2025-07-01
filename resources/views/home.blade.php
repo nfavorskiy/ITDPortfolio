@@ -1,4 +1,6 @@
-<x-app-layout>
+@extends('layouts.app')
+
+@section('content')
     <x-slot name="header">
         <h2 class="h4 font-weight-bold">Home</h2>
     </x-slot>
@@ -12,4 +14,4 @@
             <a href="{{ route('posts.index') }}" class="btn btn-primary">View Posts</a>
         @endguest
     </div>
-</x-app-layout>
+@endsection
