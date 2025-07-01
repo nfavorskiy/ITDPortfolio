@@ -16,7 +16,12 @@
                     <div class="small text-secondary">
                         <span class="me-3">
                             <i class="bi bi-person me-1"></i>
-                            By: <strong>{{ $post->user->name }}</strong>
+                            By: 
+                            @if(auth()->check() && auth()->user()->id === $post->user_id)
+                                <strong class="bg-success text-white px-2 py-1 rounded">{{ $post->user->name }} (You)</strong>
+                            @else
+                                <strong>{{ $post->user->name }}</strong>
+                            @endif
                         </span>
                         <span class="me-3">
                             <i class="bi bi-calendar-plus me-1"></i>
@@ -31,13 +36,20 @@
                     </div>
                 </div>
                 <div class="ms-3">
-                    @if(auth()->check() && auth()->user()->id === $post->user_id)
-                        <a href="{{ route('posts.edit', $post) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
-                        <form method="POST" action="{{ route('posts.destroy', $post) }}" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this post?')">Delete</button>
-                        </form>
+                    @if(auth()->check())
+                        {{-- Only post author can edit --}}
+                        @if(auth()->user()->id === $post->user_id)
+                            <a href="{{ route('posts.edit', $post) }}" class="btn btn-sm btn-outline-secondary">Edit</a>
+                        @endif
+                        
+                        {{-- Post author OR admin can delete --}}
+                        @if(auth()->user()->id === $post->user_id || auth()->user()->isAdmin())
+                            <form method="POST" action="{{ route('posts.destroy', $post) }}" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Delete this post?')">Delete</button>
+                            </form>
+                        @endif
                     @endif
                 </div>
             </li>

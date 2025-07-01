@@ -3,10 +3,27 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Models\User;
 
 Route::get('/', function () {
     return view('home');
 });
+
+Route::post('/check-name-availability', function (Request $request) {
+    $name = (string) $request->input('name'); // Force to string
+    
+    // Additional validation to ensure we have a valid name
+    if (empty(trim($name))) {
+        return response()->json(['available' => true]);
+    }
+    
+    $exists = User::where('name', $name)->exists();
+    
+    return response()->json([
+        'available' => !$exists
+    ]);
+})->name('check.name.availability');
 
 // Only authenticated users can access these routes
 Route::middleware(['auth'])->group(function () {

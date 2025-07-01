@@ -24,6 +24,9 @@
                         <a href="{{ route('dashboard') }}" class="nav-link">
                             <i class="bi bi-person-circle me-1"></i>
                             {{ Auth::user()->name }}
+                            @if(Auth::user()->isAdmin())
+                                <span class="badge bg-warning text-dark ms-1">Admin</span>
+                            @endif
                         </a>
                     </li>
                     <li class="nav-item">
