@@ -21,12 +21,12 @@
             <ul class="navbar-nav ms-auto">
                 @auth
                     <li class="nav-item">
-                        <span class="nav-link">Hi, {{ Auth::user()->name }}</span>
+                        <span class="nav-link">{{ Auth::user()->name }}</span>
                     </li>
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button class="nav-link btn btn-link" type="submit">Logout</button>
+                            <button class="nav-link btn btn-link" type="submit">Log out</button>
                         </form>
                     </li>
                 @else
