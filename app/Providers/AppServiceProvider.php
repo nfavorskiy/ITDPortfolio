@@ -28,8 +28,8 @@ class AppServiceProvider extends ServiceProvider
                 URL::forceScheme('https');
             }
 
-            if (Request::getHost() === 'yourdomain.com') {
-                header("Location: https://www.yourdomain.com" . Request::getRequestUri(), true, 301);
+            if (Request::getHost() === 'itdportfolio-laravel.blog') {
+                header("Location: https://www.itdportfolio-laravel.blog" . Request::getRequestUri(), true, 301);
                 exit;
             }
         }
