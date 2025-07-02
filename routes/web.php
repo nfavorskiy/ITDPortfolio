@@ -40,7 +40,7 @@ Route::post('/check-email-availability', function (Request $request) {
 })->name('check.email.availability');
 
 // Only authenticated users can access these routes
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('posts', PostController::class);
 });
 

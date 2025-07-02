@@ -37,6 +37,10 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('posts.index');
         }
 
+        if (!$request->user()->hasVerifiedEmail()) {
+            return redirect()->route('verification.notice');
+        }
+
         // Otherwise, redirect to intended page (where they came from) or dashboard
         return redirect()->intended(route('dashboard', absolute: false));
     }
