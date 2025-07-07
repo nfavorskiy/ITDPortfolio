@@ -18,9 +18,9 @@
                             <i class="bi bi-person me-1"></i>
                             By: 
                             @if(auth()->check() && auth()->user()->id === $post->user_id)
-                                <strong class="bg-success text-white px-2 py-1 rounded">{{ $post->user->name }} (You)</strong>
+                                <strong class="bg-success text-white px-2 py-1 rounded">{{ $post->author_name }} (You)</strong>
                             @else
-                                <strong>{{ $post->user->name }}</strong>
+                                <strong>{{ $post->author_name }}</strong>
                             @endif
                         </span>
                         <span class="me-3">
