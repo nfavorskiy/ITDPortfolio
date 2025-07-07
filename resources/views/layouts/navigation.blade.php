@@ -25,7 +25,7 @@
                             <i class="bi bi-person-circle me-1"></i>
                             {{ Auth::user()->name }}
                             @if(Auth::user()->isAdmin())
-                                <span class="badge bg-warning text-dark ms-1">Admin</span>
+                                <span class="badge bg-warning text-dark ms-1">Moderator</span>
                             @endif
                         </a>
                     </li>
