@@ -54,4 +54,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Test routes for error pages (remove in production)
+Route::get('/test-404', function () {
+    abort(404);
+})->name('test.404');
+
+Route::get('/test-500', function () {
+    abort(500);
+})->name('test.500');
+
 require __DIR__.'/auth.php';
