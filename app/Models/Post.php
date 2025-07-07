@@ -15,4 +15,20 @@ class Post extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the display name for the post author
+     */
+    public function getAuthorNameAttribute()
+    {
+        if (!$this->user) {
+            return 'Anonymous User';
+        }
+        
+        if ($this->user->is_deleted) {
+            return 'Deleted User';
+        }
+        
+        return $this->user->name;
+    }
 }
