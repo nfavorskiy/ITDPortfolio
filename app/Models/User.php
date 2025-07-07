@@ -21,6 +21,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'is_deleted',
+        'deleted_at',
         'is_admin',
     ];
 
@@ -45,6 +47,8 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_admin' => 'boolean',
+            'is_deleted' => 'boolean',
+            'deleted_at' => 'datetime',
         ];
     }
 
@@ -62,5 +66,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isAdmin()
     {
         return $this->is_admin;
+    }
+
+    public function canLogin()
+    {
+        return !$this->is_deleted;
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_deleted', false);
     }
 }

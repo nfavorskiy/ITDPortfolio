@@ -51,7 +51,13 @@ class ProfileController extends Controller
 
         Auth::logout();
 
-        $user->delete();
+        $user->update([
+            'name' => 'Deleted User',
+            'email' => 'deleted_' . $user->id . '@deleted.com',
+            'password' => bcrypt('deleted_account'),
+            'is_deleted' => true,
+            'deleted_at' => now(),
+        ]);
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

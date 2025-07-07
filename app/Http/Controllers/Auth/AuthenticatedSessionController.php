@@ -27,6 +27,14 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
+        // Check if the authenticated user is deleted
+        if ($request->user() && $request->user()->is_deleted) {
+            Auth::logout();
+            return back()->withErrors([
+                'email' => 'This account has been deleted.',
+            ]);
+        }
+
         $request->session()->regenerate();
         
         // Set login success message
