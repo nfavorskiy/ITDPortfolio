@@ -31,9 +31,10 @@ class AppServiceProvider extends ServiceProvider
 
         if (config('app.env') === 'production') {
             URL::forceRootUrl(config('app.url'));
-
-            if (str_starts_with(config('app.url'), 'https://')) {
-                URL::forceScheme('https');
+            URL::forceScheme('https');
+            
+            if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+                $_SERVER['HTTPS'] = 'on';
             }
 
             if (Request::getHost() === 'itdportfolio-laravel.blog') {
