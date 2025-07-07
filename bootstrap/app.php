@@ -19,4 +19,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->render(function (NotFoundHttpException $e, $request) {
             return response()->view('errors.404', [], 404);
         });
+
+        // Handle 500 errors
+        $exceptions->render(function (Exception $e, $request) {
+            if ($e instanceof \ErrorException || $e instanceof \Error) {
+                return response()->view('errors.500', [], 500);
+            }
+        });
     })->create();

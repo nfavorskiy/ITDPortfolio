@@ -5,30 +5,34 @@
     <div class="row justify-content-center">
         <div class="col-md-8 text-center">
             <div class="error-template">
-                <h1 class="display-1 text-muted">404</h1>
-                <h2 class="mb-4">Page Not Found</h2>
+                <h1 class="display-1 text-danger">500</h1>
+                <h2 class="mb-4">Internal Server Error</h2>
                 <p class="lead mb-4">
-                    Sorry, the page you are looking for could not be found.
+                    Something went wrong on our end. We're working to fix it!
                 </p>
                 <div class="error-actions">
                     <a href="{{ url('/') }}" class="btn btn-primary btn-lg me-2">
                         <i class="bi bi-house me-2"></i>Go to Home page
                     </a>
-                    <a href="{{ route('posts.index') }}" class="btn btn-outline-secondary btn-lg">
-                        <i class="bi bi-file-text me-2"></i>View Posts
-                    </a>
+                    <button onclick="history.back()" class="btn btn-outline-secondary btn-lg">
+                        <i class="bi bi-arrow-left me-2"></i>Go Back
+                    </button>
                 </div>
                 
                 <div class="mt-5">
-                    <h5>What can you do?</h5>
+                    <h5>What happened?</h5>
                     <ul class="list-unstyled">
-                        <li><i class="bi bi-arrow-right text-primary"></i> Check if you typed the URL correctly</li>
-                        <li><i class="bi bi-arrow-right text-primary"></i> Go back to the <a href="{{ url('/') }}">homepage</a></li>
-                        <li><i class="bi bi-arrow-right text-primary"></i> Browse our <a href="{{ route('posts.index') }}">posts</a></li>
-                        @guest
-                        <li><i class="bi bi-arrow-right text-primary"></i> <a href="{{ route('login') }}">Sign in</a> to access more content</li>
-                        @endguest
+                        <li><i class="bi bi-exclamation-triangle text-warning"></i> A server error occurred while processing your request</li>
+                        <li><i class="bi bi-tools text-primary"></i> Our team has been notified and is working on a fix</li>
+                        <li><i class="bi bi-arrow-clockwise text-primary"></i> Try refreshing the page in a few moments</li>
+                        <li><i class="bi bi-arrow-right text-primary"></i> If the problem persists, go back to the <a href="{{ url('/') }}">homepage</a></li>
                     </ul>
+                </div>
+                
+                <div class="mt-4">
+                    <p class="text-muted small">
+                    <!--    Error Code: 500 | {{ now()->format('Y-m-d H:i:s') }} -->
+                    </p>
                 </div>
             </div>
         </div>
