@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '500 - Server Error - ' . config('app.name'))
+@section('title', 'Internal Server Error - ' . config('app.name'))
 
 @section('content')
 <div class="container">

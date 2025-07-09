@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '404 - Page Not Found - ' . config('app.name'))
+@section('title', 'Page Not Found - ' . config('app.name'))
 
 @section('content')
 <div class="container">
