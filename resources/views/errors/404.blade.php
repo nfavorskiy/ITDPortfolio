@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '404 - Page Not Found - ' . config('app.name'))
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -14,9 +16,9 @@
                     <a href="{{ url('/') }}" class="btn btn-primary btn-lg me-2">
                         <i class="bi bi-house me-2"></i>Go to Home page
                     </a>
-                    <a href="{{ route('posts.index') }}" class="btn btn-outline-secondary btn-lg">
-                        <i class="bi bi-file-text me-2"></i>View Posts
-                    </a>
+                    <button onclick="history.back()" class="btn btn-outline-secondary btn-lg">
+                        <i class="bi bi-arrow-left me-2"></i>Go Back
+                    </button>
                 </div>
                 
                 <div class="mt-5">

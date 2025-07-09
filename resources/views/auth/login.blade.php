@@ -1,3 +1,4 @@
+<x-guest-layout :title="'Sign In - ' . config('app.name')">
 <x-guest-layout>
     <div class="container mt-5" style="max-width: 500px;">
         <h2 class="mb-4 text-center">Sign In</h2>

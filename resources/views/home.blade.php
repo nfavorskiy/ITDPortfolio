@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Home - ' . config('app.name'))
+
 @section('content')
     <x-slot name="header">
         <h2 class="h4 font-weight-bold">Home</h2>
